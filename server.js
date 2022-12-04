@@ -10,6 +10,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import express from "express";
 import http from "http";
+import path from "path"
 const app = express();
 const httpServer = http.createServer(app);
 const port =process.env.PORT||4000;
@@ -47,6 +48,12 @@ const server = new ApolloServer({
       : ApolloServerPluginLandingPageDisabled,
   ],
 });
+//if(process.env.NODE_ENV==="production"){
+  app.use(express.static("client/build"))
+  app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(__dirname,"client","build","index.html"))
+  })
+//}
 await server.start();
 server.applyMiddleware({ app, path: "/graphql" });
 httpServer.listen({ port: port }, ()=>{
