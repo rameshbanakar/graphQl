@@ -1,0 +1,103 @@
+---------------------------------------------------------------------------------------------------------------------------------
+query getAllUser{
+  user{
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+---------------------------------------------------------------------------------------------------------------------------------
+
+query getAllQuotes{
+  quotes{
+    quote
+    by
+  }
+}
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+query getAllUsersAndQuotes{
+  users{
+    _id
+    firstName
+    lastName
+    email
+    quotes{
+      quote
+      by
+    }
+  }
+}
+--------------------------------------------------------------------------------------------------------------------------------
+
+query getUserById{
+  user(_id:"1"){
+    _id
+    firstName
+    email
+  }
+}
+
+>>>Query variable 
+
+query getUserById($userId:ID!){
+  user(_id:$userId){
+    _id
+    firstName
+    email
+  }
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+query getQuoteById{
+  iquotes(by:"2"){
+    quote
+  }
+}
+
+>>>Query variable 
+
+query getQuoteById($quoteBy:ID!){
+  iquotes(by:$quoteBy){
+    quote
+  }
+}
+----------------------------------------------------------------------------------------------------------------------------------
+
+mutation createUser($newUsers:UserInput!){
+  user:signUpUser(newUser:$newUsers){
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+
+mutation signInUser($newUsers:UserSignIn!){
+  user:signInUser(userSign:$newUsers){
+   token
+  }
+}
+
+{
+  "newUsers": {
+    "email": "ramesh123446@gmail.com",
+    "password": "12345"
+  }
+}
+
+--------------------------------------------------------------------------------------------------------------------------------
+mutation create{
+  createQuote(name:"always nice for no reason")
+}
+
+{
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdiYjk2YTg1OTk3YzQ1NTVhMmY4N2EiLCJpYXQiOjE2NjkwOTA0Nzh9.kKBSseytMw9IL802khkCUShcUgXz8bXi79DExCfzvZU"
+  
+}
+-----------------------------------------------------------------------------------------------------------------------------------
