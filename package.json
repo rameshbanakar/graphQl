@@ -5,7 +5,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +22,8 @@
     "mongoose": "^6.7.2",
     "nodemon": "^2.0.20",
     "react-router-dom": "^6.4.3"
+  },
+  "engines":{
+    "node":"16.13.0"
   }
 }
